@@ -1,0 +1,13 @@
+.container {
+  padding: 20px;
+}
+
+.converter-panel {
+  margin-bottom: 20px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}

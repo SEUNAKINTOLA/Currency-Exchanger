@@ -4,6 +4,9 @@ export interface Currency {
 }
 
 export interface ConvertedValue {
-  currency: string;
+  convertFromCurrency: string;
+  convertToCurrency: string;
+  convertFromRate: number;
+  convertToRate: number;
   value: number;
 }
