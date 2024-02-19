@@ -1,0 +1,28 @@
+<div class="converter-panel">
+  <div class="left-section">
+    <mat-form-field class="amount-input">
+      <mat-label>Amount</mat-label>
+      <input matInput type="number" [(ngModel)]="defaultAmount" (ngModelChange)="defaultAmountChange.emit(defaultAmount)">
+    </mat-form-field>
+  </div>
+
+  <div class="right-section">
+    <div class="select-section">
+      <mat-form-field class="currency-select">
+        <mat-label>From</mat-label>
+        <mat-select [(value)]="convertFromCurrency" (selectionChange)="onConvertFromCurrencySelected($event.value)">
+          <mat-option *ngFor="let currency of currencies" [value]="currency.code">{{ currency.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="currency-select">
+        <mat-label>To</mat-label>
+        <mat-select [(value)]="convertToCurrency" (selectionChange)="onConvertToCurrencySelected($event.value)">
+          <mat-option *ngFor="let currency of currencies" [value]="currency.code">{{ currency.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button class="swap-button" color="primary" (click)="startConversion()">Convert</button>
+  </div>
+</div>

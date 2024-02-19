@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="converter-panel">
+    <app-converter-panel
+      [defaultAmount]="defaultAmount"
+      [convertFromCurrency]="convertFromCurrency"
+      [convertToCurrency]="convertToCurrency"
+      [currencies]="currencies"
+      (convert)="convert()"
+      (convertFromCurrencyChange)="onConvertFromCurrencyChange($event)"
+      (convertFromCurrencyChange)="onConvertFromCurrencyChange($event)"
+      (defaultAmountChange)="onDefaultAmountChange($event)"
+    ></app-converter-panel>
+  </div>
+
+  <div class="cards-grid">
+    <app-currency-card *ngFor="let item of convertedValues" [currency]="item"></app-currency-card>
+  </div>
+</div>
