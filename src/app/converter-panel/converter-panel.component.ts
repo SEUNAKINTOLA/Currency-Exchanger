@@ -9,8 +9,8 @@ import { Currency } from '../models/currency.model';
 export class ConverterPanelComponent {
   @Input() defaultAmount: number = 1;
   @Input() convertedResult!: number;
-  @Input() convertFromCurrency: string | undefined;
-  @Input() convertToCurrency: string | undefined;
+  @Input() convertFromCurrency: string = "";
+  @Input() convertToCurrency: string = "";
   @Input() currencies: Currency[] = [];
   @Output() convert: EventEmitter<void> = new EventEmitter<void>();
   @Output() convertFromCurrencyChange: EventEmitter<string> = new EventEmitter<string>();
@@ -41,11 +41,13 @@ export class ConverterPanelComponent {
   }
 
   onAmountChange(amount:number) {
-    this.defaultAmountChange.emit(amount)
     this.isAmountValid = !isNaN(this.defaultAmount) && this.defaultAmount > 0;
+    if(this.isAmountValid){
+      this.defaultAmountChange.emit(amount)
+    }
   }
 
-  formatAmount(amount: number): string {
-    return amount.toFixed(2);
+  formatAmount(amount: number): number {
+    return Number(amount?.toFixed(2)) || 0;
   }
 }

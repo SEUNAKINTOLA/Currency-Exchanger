@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { DetailsComponent } from './details/details.component';
 import { CurrencyService } from './services/currency.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     FormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatFormFieldModule
   ],
   providers: [CurrencyService],
   bootstrap: [AppComponent]
