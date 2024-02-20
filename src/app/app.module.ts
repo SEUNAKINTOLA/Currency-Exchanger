@@ -14,6 +14,9 @@ import { CurrencyCardComponent } from './currency-card/currency-card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { DetailsComponent } from './details/details.component';
+import { CurrencyService } from './services/currency.service';
+import { HttpClientModule } from '@angular/common/http';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -32,9 +35,11 @@ import { DetailsComponent } from './details/details.component';
     MatOptionModule,
     MatIconModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatFormFieldModule
   ],
-  providers: [],
+  providers: [CurrencyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

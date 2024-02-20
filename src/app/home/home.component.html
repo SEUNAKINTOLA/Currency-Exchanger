@@ -2,12 +2,13 @@
   <div class="converter-panel">
     <app-converter-panel
       [defaultAmount]="defaultAmount"
+      [convertedResult]="convertedResult"
       [convertFromCurrency]="convertFromCurrency"
       [convertToCurrency]="convertToCurrency"
       [currencies]="currencies"
       (convert)="convert()"
       (convertFromCurrencyChange)="onConvertFromCurrencyChange($event)"
-      (convertFromCurrencyChange)="onConvertFromCurrencyChange($event)"
+      (convertToCurrencyChange)="onConvertToCurrencyChange($event)"
       (defaultAmountChange)="onDefaultAmountChange($event)"
     ></app-converter-panel>
   </div>

@@ -7,30 +7,47 @@ import { Currency } from '../models/currency.model';
   styleUrls: ['./converter-panel.component.scss']
 })
 export class ConverterPanelComponent {
-  @Input() defaultAmount: number | undefined;
-  @Input() convertFromCurrency: string | undefined;
-  @Input() convertToCurrency: string | undefined;
+  @Input() defaultAmount: number = 1;
+  @Input() convertedResult!: number;
+  @Input() convertFromCurrency: string = "";
+  @Input() convertToCurrency: string = "";
   @Input() currencies: Currency[] = [];
   @Output() convert: EventEmitter<void> = new EventEmitter<void>();
   @Output() convertFromCurrencyChange: EventEmitter<string> = new EventEmitter<string>();
   @Output() convertToCurrencyChange: EventEmitter<string> = new EventEmitter<string>();
   @Output() defaultAmountChange: EventEmitter<number> = new EventEmitter<number>();
+  isAmountValid: boolean = !isNaN(this.defaultAmount) && this.defaultAmount > 0;
+
+  swapCurrencies() {
+    const tempCurrency = this.convertFromCurrency;
+    this.convertFromCurrency = this.convertToCurrency;
+    this.convertToCurrency = tempCurrency;
+    this.startConversion();
+  }
 
   startConversion() {
     this.convertFromCurrencyChange.emit(this.convertFromCurrency);
     this.convertToCurrencyChange.emit(this.convertToCurrency);
-    this.convert.emit();
   }
 
   onConvertFromCurrencySelected(currencyCode: string) {
     this.convertFromCurrency = currencyCode;
     this.convertFromCurrencyChange.emit(this.convertFromCurrency);
-    this.convert.emit();
   }
 
   onConvertToCurrencySelected(currencyCode: string) {
     this.convertToCurrency = currencyCode;
     this.convertToCurrencyChange.emit(this.convertToCurrency);
-    this.convert.emit();
+  }
+
+  onAmountChange(amount:number) {
+    this.isAmountValid = !isNaN(this.defaultAmount) && this.defaultAmount > 0;
+    if(this.isAmountValid){
+      this.defaultAmountChange.emit(amount)
+    }
+  }
+
+  formatAmount(amount: number): number {
+    return Number(amount?.toFixed(2)) || 0;
   }
 }

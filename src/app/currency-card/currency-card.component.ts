@@ -7,6 +7,9 @@ import { ConvertedValue } from '../models/currency.model';
   styleUrls: ['./currency-card.component.scss']
 })
 export class CurrencyCardComponent {
-  @Input()
-  currency!: ConvertedValue;
+  @Input() currency!: ConvertedValue;
+
+  formatAmount(amount: number): string {
+    return amount.toFixed(2);
+  }
 }
