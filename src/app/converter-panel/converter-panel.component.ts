@@ -9,10 +9,10 @@ import { SharedDataService } from '../services/shared-data.service';
   styleUrls: ['./converter-panel.component.scss']
 })
 export class ConverterPanelComponent implements OnChanges  {
-  defaultAmount: number = 1;
   convertedResult!: number;
   convertedValues: ConvertedValue[] = [];
 
+  @Input() defaultAmount: number = 1;
   @Input() convertFromCurrency: string = 'EUR';
   @Input() convertToCurrency: string = 'USD';
   @Input() currencies: Currency[] = [];
@@ -92,6 +92,9 @@ export class ConverterPanelComponent implements OnChanges  {
     const detailsUrl = `/details/${this.convertFromCurrency}/${this.convertToCurrency}`;
     this.sharedDataService.setCurrencies(this.currencies);
     this.sharedDataService.setConversionRates(this.conversionRates);
-    this.router.navigate([detailsUrl]);
+    const queryParams = {
+      amount: this.defaultAmount,
+    };
+    this.router.navigate([detailsUrl], { queryParams });
   }
 }

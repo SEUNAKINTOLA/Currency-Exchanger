@@ -15,6 +15,7 @@ export class DetailsComponent implements OnInit {
   convertToCurrency!: string;
   convertedResult: number = 0;
   convertedValues: ConvertedValue[] = [];
+  amount: number = 1;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,6 +30,8 @@ export class DetailsComponent implements OnInit {
     this.convertFromCurrency = params['fromCurrency'];
     this.convertToCurrency = params['toCurrency'];
     });
+    this.amount = this.route.snapshot.queryParams['amount'];
+    console.log(this.amount);
   }
 
   onConvertFromCurrencyChange(selectedCurrency: string) {
