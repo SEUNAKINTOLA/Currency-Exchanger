@@ -1,15 +1,16 @@
 <div class="container">
+  <div class="top-section">
+    <h3>Currency Exchanger</h3>
+  </div>
   <div class="converter-panel">
     <app-converter-panel
-      [defaultAmount]="defaultAmount"
-      [convertedResult]="convertedResult"
-      [convertFromCurrency]="convertFromCurrency"
-      [convertToCurrency]="convertToCurrency"
+      [conversionRates]="conversionRates"
       [currencies]="currencies"
-      (convert)="convert()"
       (convertFromCurrencyChange)="onConvertFromCurrencyChange($event)"
       (convertToCurrencyChange)="onConvertToCurrencyChange($event)"
       (defaultAmountChange)="onDefaultAmountChange($event)"
+      (convertedResultChange)="onConvertedResultChange($event)"
+      (convertedValuesChange)="handleConvertedValues($event)"
     ></app-converter-panel>
   </div>
 

@@ -4,6 +4,12 @@
       <mat-label>Amount</mat-label>
       <input matInput type="number" [(ngModel)]="defaultAmount" (ngModelChange)="onAmountChange(defaultAmount)">
     </mat-form-field>
+
+    <div class="rate-box">
+      {{ formatAmount(1.00) }} {{ convertFromCurrency }}
+      =
+      {{ formatAmount(conversionRates[convertToCurrency]/conversionRates[convertFromCurrency]) }} {{ convertToCurrency }}
+    </div>
   </div>
 
   <div class="right-section" [class.disabled]="!isAmountValid">
@@ -11,7 +17,7 @@
       <mat-form-field class="currency-select">
         <mat-label>From</mat-label>
         <mat-select [disabled]="!isAmountValid" [(value)]="convertFromCurrency" (selectionChange)="onConvertFromCurrencySelected($event.value)">
-          <mat-option *ngFor="let currency of currencies" [value]="currency.code">{{ currency.name }}</mat-option>
+          <mat-option *ngFor="let currency of currencies" [value]="currency.code">{{ currency.code }}</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -22,7 +28,7 @@
       <mat-form-field class="currency-select">
         <mat-label>To</mat-label>
         <mat-select [disabled]="!isAmountValid"  [(value)]="convertToCurrency" (selectionChange)="onConvertToCurrencySelected($event.value)">
-          <mat-option *ngFor="let currency of currencies" [value]="currency.code">{{ currency.name }}</mat-option>
+          <mat-option *ngFor="let currency of currencies" [value]="currency.code">{{ currency.code }}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -30,10 +36,10 @@
     <button [disabled]="!isAmountValid"  mat-raised-button class="convert-button" color="primary" (click)="startConversion()">Convert</button>
 
        <div class="conversion-result">
-        <div class="conversion-box">
+        <div class="conversion-box" [class.fit-width]="!showDetailsButton" >
           {{ formatAmount(convertedResult) }} {{ convertToCurrency }}
         </div>
-        <button mat-raised-button class="details-button" color="accent">View Details</button>
+        <button *ngIf="showDetailsButton" (click)="viewDetails()" mat-raised-button class="details-button" color="accent">View Details</button>
       </div>
 
   </div>

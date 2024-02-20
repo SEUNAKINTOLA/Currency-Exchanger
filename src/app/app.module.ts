@@ -17,6 +17,7 @@ import { DetailsComponent } from './details/details.component';
 import { CurrencyService } from './services/currency.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ChartComponent } from './chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     HomeComponent,
     ConverterPanelComponent,
     CurrencyCardComponent,
-    DetailsComponent
+    DetailsComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,33 @@
+.container {
+  padding: 20px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.converter-panel {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.history-card {
+}
+
+.top-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 50px;
+  width: 80%;
+}
+
+.home-button {
+  width: 100%;
+  padding: 8px 16px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

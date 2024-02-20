@@ -1,1 +1,26 @@
-<p>details works!</p>
+<div class="container">
+  <div class="top-section">
+    <h3>{{convertFromCurrency}} - {{currencyNameFromCode(convertFromCurrency)}}</h3>
+    <div class="details-buttons">
+      <button mat-raised-button class="home-button" color="primary" routerLink="/">Back to Home</button>
+    </div>
+  </div>
+  <div class="converter-panel">
+    <app-converter-panel
+      [showDetailsButton]="false"
+      [conversionRates]="conversionRates"
+      [currencies]="currencies"
+      [convertFromCurrency]="convertFromCurrency"
+      [convertToCurrency]="convertToCurrency"
+      (convertFromCurrencyChange)="onConvertFromCurrencyChange($event)"
+      (convertToCurrencyChange)="onConvertToCurrencyChange($event)"
+      (defaultAmountChange)="onDefaultAmountChange($event)"
+      (convertedResultChange)="onConvertedResultChange($event)"
+      (convertedValuesChange)="handleConvertedValues($event)"
+    ></app-converter-panel>
+  </div>
+
+  <div class="history-card">
+    <app-chart></app-chart>
+  </div>
+</div>
