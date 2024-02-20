@@ -3,10 +3,7 @@ import { HomeComponent } from './home.component';
 import { CurrencyService } from '../services/currency.service';
 import { of } from 'rxjs';
 import { Currency, ConvertedValue } from '../models/currency.model';
-
-// Create a mock component for ConverterPanelComponent
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-
 
 @Component({
   selector: 'app-currency-card',
@@ -16,22 +13,23 @@ class MockCurrencyCardComponent {
   @Input() currency: any;
 }
 
-
 @Component({
   selector: 'app-converter-panel',
   template: ''
 })
 class MockConverterPanelComponent {
-  @Input()
-  defaultAmount!: number;
-  @Input() convertedResult: any;
-  @Input() convertFromCurrency!: string;
-  @Input() convertToCurrency!: string;
-  @Input() currencies!: any[];
-  @Output() convert = new EventEmitter<void>();
-  @Output() convertFromCurrencyChange = new EventEmitter<string>();
-  @Output() convertToCurrencyChange = new EventEmitter<string>();
-  @Output() defaultAmountChange = new EventEmitter<number>();
+  defaultAmount: number = 1;
+  convertFromCurrency: string = 'EUR';
+  convertedResult!: number;
+  convertToCurrency: string = 'USD';
+  @Input() currencies: Currency[] = [];
+  @Input() conversionRates: {[key: string]: number} = {};
+
+  @Output() convertFromCurrencyChange: EventEmitter<string> = new EventEmitter<string>();
+  @Output() convertToCurrencyChange: EventEmitter<string> = new EventEmitter<string>();
+  @Output() defaultAmountChange: EventEmitter<number> = new EventEmitter<number>();
+  @Output() convertedResultChange: EventEmitter<number> = new EventEmitter<number>();
+  @Output() convertedValuesChange: EventEmitter<ConvertedValue[]> = new EventEmitter<ConvertedValue[]>();
 }
 
 describe('HomeComponent', () => {
@@ -77,35 +75,5 @@ describe('HomeComponent', () => {
 
     expect(currencyServiceSpy.getCurrencies).toHaveBeenCalled();
     expect(component.currencies).toEqual(currencies);
-  });
-
-  it('should update converted values on currency conversion', () => {
-    component.ngOnInit();
-    fixture.detectChanges();
-
-    component.onDefaultAmountChange(10);
-    fixture.detectChanges();
-
-    expect(component.convertedValues.length).toBeGreaterThan(0);
-  });
-
-  it('should update converted result on currency conversion', () => {
-    component.ngOnInit();
-    fixture.detectChanges();
-
-    component.onDefaultAmountChange(10);
-    fixture.detectChanges();
-
-    expect(component.convertedResult).toBeDefined();
-  });
-
-  it('should update converted result when currency selection changes', () => {
-    component.ngOnInit();
-    fixture.detectChanges();
-
-    component.onConvertFromCurrencyChange('USD');
-    fixture.detectChanges();
-
-    expect(component.convertedResult).toBeDefined();
   });
 });

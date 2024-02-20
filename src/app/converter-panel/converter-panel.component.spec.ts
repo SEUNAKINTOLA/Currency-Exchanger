@@ -33,7 +33,15 @@ describe('ConverterPanelComponent', () => {
     component.convertedResult = 0;
     component.convertFromCurrency = '';
     component.convertToCurrency = '';
-    component.currencies = [];
+    component.currencies = [
+      { code: 'USD', name: 'USD' },
+      { code: 'EUR', name: 'EUR' }
+    ];
+    component.conversionRates = {
+      'USD': 1.0,
+      'EUR': 0.83,
+    };
+
     fixture.detectChanges();
   });
 
@@ -50,13 +58,13 @@ describe('ConverterPanelComponent', () => {
   });
 
   it('should start conversion', () => {
-    spyOn(component.convertFromCurrencyChange, 'emit');
-    spyOn(component.convertToCurrencyChange, 'emit');
+    spyOn(component.convertedValuesChange, 'emit');
+    spyOn(component.convertedResultChange, 'emit');
     component.convertFromCurrency = 'USD';
     component.convertToCurrency = 'EUR';
     component.startConversion();
-    expect(component.convertFromCurrencyChange.emit).toHaveBeenCalledWith('USD');
-    expect(component.convertToCurrencyChange.emit).toHaveBeenCalledWith('EUR');
+    expect(component.convertedValuesChange.emit).toHaveBeenCalled();
+    expect(component.convertedResultChange.emit).toHaveBeenCalled();
   });
 
   it('should handle convert from currency selection', () => {
@@ -96,5 +104,32 @@ describe('ConverterPanelComponent', () => {
     const amount = 10.1234;
     const formattedAmount = component.formatAmount(amount);
     expect(formattedAmount).toEqual(10.12);
+  });
+
+  it('should update converted values on currency conversion', () => {
+    fixture.detectChanges();
+
+    component.onAmountChange(10);
+    fixture.detectChanges();
+
+    expect(component.convertedValues.length).toBeGreaterThan(0);
+  });
+
+  it('should update converted result on currency conversion', () => {
+    fixture.detectChanges();
+
+    component.onAmountChange(10);
+    fixture.detectChanges();
+
+    expect(component.convertedResult).toBeDefined();
+  });
+
+  it('should update converted result when currency selection changes', () => {
+    fixture.detectChanges();
+
+    component.onConvertFromCurrencySelected('USD');
+    fixture.detectChanges();
+
+    expect(component.convertedResult).toBeDefined();
   });
 });

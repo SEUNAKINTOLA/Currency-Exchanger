@@ -13,6 +13,10 @@ export class CurrencyService {
   constructor(private http: HttpClient) {}
 
   getCurrencies(): Observable<any> {
+    const url = `${this.apiUrl}/symbols?access_key=${this.apiKey}`;
+    return this.http.get<any>(url);
+  }
+  getCurrenciesRate(): Observable<any> {
     const url = `${this.apiUrl}/latest?access_key=${this.apiKey}`;
     return this.http.get<any>(url);
   }

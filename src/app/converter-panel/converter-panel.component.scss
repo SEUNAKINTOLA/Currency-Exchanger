@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -61,12 +61,23 @@
   margin-top: 10px;
 }
 
+.rate-box {
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+}
+
 .conversion-box {
   padding: 30px;
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 40%;
   text-align: center;
+}
+
+.fit-width {
+  width: 100%;
 }
 
 .details-button {
@@ -109,7 +120,7 @@
   }
 
   .left-section {
-    margin-right: 10px;
+    margin-right: 100px;
   }
 
   .right-section {

@@ -1,13 +1,25 @@
 .container {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .converter-panel {
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
+}
+
+.top-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 50px;
+  width: 80%;
 }
