@@ -9,6 +9,20 @@ This Angular application allows users to convert currencies, view historical dat
 - Currency Details: See detailed information about specific currencies.
 - Responsive Design: Works well on both desktop and mobile devices.
 
+
+## Snapshots
+
+### Mobile:
+- ![Mobile Home Page](/snapshots/home_mobile.png)
+- ![Mobile Details Page](/snapshots/detail_mobile.png)
+
+
+### Desktop:
+- ![Desktop Home Page](/snapshots/home_desktop.png)
+- ![Desktop Details Page](/snapshots/detail_desktop.png)
+
+
+
 ## Installation
 
 1. Clone the repository: `git clone <repository-url>`
@@ -21,6 +35,7 @@ export const environment = {
   fixerApiBaseUrl: 'http://data.fixer.io/api',
   apiKey: 'YOUR_API_KEY_HERE', // Replace 'YOUR_API_KEY_HERE' with your actual Fixer API key
 };
+```
 
 ## Usage
 
