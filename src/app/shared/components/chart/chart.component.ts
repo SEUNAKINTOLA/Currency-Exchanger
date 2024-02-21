@@ -5,7 +5,7 @@ import { CurrencyService } from '../../services/currency/currency.service';
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.scss']
+  styleUrls: ['./chart.component.scss'],
 })
 export class ChartComponent implements OnInit {
   @Input() fromCurrency!: string;
@@ -20,7 +20,7 @@ export class ChartComponent implements OnInit {
   public lineChartType = 'line';
   public lineChartPlugins = [];
 
-  constructor(private currencyService: CurrencyService) { }
+  constructor(private currencyService: CurrencyService) {}
 
   ngOnInit() {
     this.fetchHistoricalData();
@@ -33,24 +33,40 @@ export class ChartComponent implements OnInit {
     // Iterate over the previous 12 months from the current month
     for (let month = 0; month < 12; month++) {
       const currentMonth = currentDate.getMonth() - month;
-      const endOfMonthDate = new Date(currentDate.getFullYear(), currentMonth, 0);
-      const formattedendOfMonthDate = endOfMonthDate.toISOString().split('T')[0];
+      const endOfMonthDate = new Date(
+        currentDate.getFullYear(),
+        currentMonth,
+        0
+      );
+      const formattedendOfMonthDate = endOfMonthDate
+        .toISOString()
+        .split('T')[0];
 
       // Create a promise for each month to fetch historical data
       promises.push(
-        this.currencyService.getHistoricalData(this.fromCurrency, this.toCurrency, formattedendOfMonthDate)
-          .toPromise() as Promise<{ [key: string]: number; }>
+        this.currencyService
+          .getHistoricalData(
+            this.fromCurrency,
+            this.toCurrency,
+            formattedendOfMonthDate
+          )
+          .toPromise() as Promise<{ [key: string]: number }>
       );
     }
 
-    const fromCurrency: number[]  = [];
+    const fromCurrency: number[] = [];
     const toCurrency: number[] = [];
     Promise.all(promises)
-      .then(monthlyData => {
+      .then((monthlyData) => {
         monthlyData.reverse().forEach((data, index) => {
           const currentMonth = currentDate.getMonth() - (index + 1); //+1 because array index starts from 0, but month count from 1
-          const rateDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - (index), 0);
-          const monthLabel = this.getMonthName(currentMonth) + " " + rateDate.getFullYear();
+          const rateDate = new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth() - index,
+            0
+          );
+          const monthLabel =
+            this.getMonthName(currentMonth) + ' ' + rateDate.getFullYear();
           const monthValues = Object.values(data['rates']);
 
           this.lineChartLabels.push(monthLabel);
@@ -58,22 +74,34 @@ export class ChartComponent implements OnInit {
           toCurrency.push(monthValues[1]);
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error fetching historical data:', error);
-      }).finally(()=>{
-
-        this.lineChartData.push({ data: fromCurrency, label: this.fromCurrency });
+      })
+      .finally(() => {
+        this.lineChartData.push({
+          data: fromCurrency,
+          label: this.fromCurrency,
+        });
         this.lineChartData.push({ data: toCurrency, label: this.toCurrency });
       });
   }
 
   getMonthName(month: number): string {
     const months = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
     ];
     const adjustedMonth = (month < 0 ? month + 12 : month) % 12; // Adjust negative months and handle overflow
     return months[adjustedMonth];
   }
-
 }

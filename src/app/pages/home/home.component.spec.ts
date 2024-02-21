@@ -38,7 +38,7 @@ describe('HomeComponent', () => {
   let currencyServiceSpy: jasmine.SpyObj<CurrencyService>;
 
   beforeEach(async () => {
-    const spy = jasmine.createSpyObj('CurrencyService', ['getCurrencies']);
+    const spy = jasmine.createSpyObj('CurrencyService', ['getCurrencies','getCurrenciesRate']);
     await TestBed.configureTestingModule({
       declarations: [ HomeComponent, MockConverterPanelComponent, MockCurrencyCardComponent ],
       providers: [
@@ -55,8 +55,16 @@ describe('HomeComponent', () => {
     component = fixture.componentInstance;
 
     // Set up the spy to return an observable
-    const mockResponse = { success: true, rates: { USD: 1.0, EUR: 0.85 } };
-    currencyServiceSpy.getCurrencies.and.returnValue(of(mockResponse));
+    const currencies =
+    {
+      "USD": "United States Dollar",
+      "EUR": "Euro",
+     };
+    const mockCurrenciesResponse = { success: true, symbols: currencies };
+    currencyServiceSpy.getCurrencies.and.returnValue(of(mockCurrenciesResponse));
+
+    const mockCurrenciesRateResponse = { success: true, rates: { USD: 1.0, EUR: 0.85 } };
+    currencyServiceSpy.getCurrenciesRate.and.returnValue(of(mockCurrenciesRateResponse));
 
     fixture.detectChanges();
   });
@@ -67,8 +75,8 @@ describe('HomeComponent', () => {
 
   it('should fetch currencies on initialization', () => {
     const currencies: Currency[] = [
-      { code: 'USD', name: 'USD' },
-      { code: 'EUR', name: 'EUR' }
+      { code: 'USD', name: 'United States Dollar' },
+      { code: 'EUR', name: 'Euro' }
     ];
 
     component.ngOnInit();
