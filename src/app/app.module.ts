@@ -18,6 +18,7 @@ import { CurrencyService } from './services/currency.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ChartComponent } from './chart/chart.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ChartComponent } from './chart/chart.component';
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    NgChartsModule
   ],
   providers: [CurrencyService],
   bootstrap: [AppComponent]

@@ -25,4 +25,7 @@ export class CurrencyService {
     const url = `${this.apiUrl}/latest?access_key=${this.apiKey}&base=${convertFrom}&symbols=${convertTo}`;
     return this.http.get<any>(url);
   }
+  getHistoricalData(fromCurrency: string, toCurrency: string, date:string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${date}?access_key=${this.apiKey}&base=EUR&symbols=${fromCurrency},${toCurrency}`);
+  }
 }

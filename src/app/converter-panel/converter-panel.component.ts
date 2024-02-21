@@ -33,7 +33,7 @@ export class ConverterPanelComponent implements OnChanges  {
     ) {}
 
     ngOnChanges(changes: SimpleChanges) {
-      if (changes['currencies'] && changes['currencies'].currentValue.length > 0) {
+      if (changes['conversionRates']) {
         this.startConversion();
       }
     }
