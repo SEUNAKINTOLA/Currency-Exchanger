@@ -13,12 +13,14 @@ This Angular application allows users to convert currencies, view historical dat
 ## Snapshots
 
 ### Mobile:
-![Mobile Home Page](/snapshots/home_mobile.png)
-![Mobile Details Page](/snapshots/detail_mobile.png)
+- ![Mobile Home Page](/snapshots/home_mobile.png)
+- ![Mobile Details Page](/snapshots/detail_mobile.png)
+
 
 ### Desktop:
-![Desktop Home Page](/snapshots/home_desktop.png)
-![Desktop Details Page](/snapshots/detail_desktop.png)
+- ![Desktop Home Page](/snapshots/home_desktop.png)
+- ![Desktop Details Page](/snapshots/detail_desktop.png)
+
 
 
 ## Installation
