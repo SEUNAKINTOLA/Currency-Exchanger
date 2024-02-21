@@ -1,0 +1,10 @@
+<div class="container">
+  <h2>Historical Data Chart</h2>
+  <div class="chart" >
+    <p *ngIf="lineChartData.length === 0">
+      Loading Historical Data Chart....
+    </p>
+    <canvas *ngIf="lineChartData.length > 0"
+     baseChart  [type]="'line'" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"></canvas>
+  </div>
+</div>

@@ -15,13 +15,14 @@
       [convertToCurrency]="convertToCurrency"
       (convertFromCurrencyChange)="onConvertFromCurrencyChange($event)"
       (convertToCurrencyChange)="onConvertToCurrencyChange($event)"
-      (defaultAmountChange)="onDefaultAmountChange($event)"
-      (convertedResultChange)="onConvertedResultChange($event)"
       (convertedValuesChange)="handleConvertedValues($event)"
     ></app-converter-panel>
   </div>
 
   <div class="history-card">
-    <app-chart></app-chart>
+    <app-chart
+    [fromCurrency]="convertFromCurrency"
+    [toCurrency]="convertToCurrency"
+    ></app-chart>
   </div>
 </div>

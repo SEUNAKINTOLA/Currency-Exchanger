@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CurrencyCardComponent } from './currency-card.component';
-import { ConvertedValue } from '../models/currency.model';
 
 describe('CurrencyCardComponent', () => {
   let component: CurrencyCardComponent;

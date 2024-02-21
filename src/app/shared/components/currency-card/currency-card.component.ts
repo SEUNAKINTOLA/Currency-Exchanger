@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ConvertedValue } from '../models/currency.model';
+import { ConvertedValue } from '../../../models/currency.model';
 
 @Component({
   selector: 'app-currency-card',
