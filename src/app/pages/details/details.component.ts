@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Currency, ConvertedValue } from '../models/currency.model';
-import { SharedDataService } from '../services/shared-data.service';
+import { Currency, ConvertedValue } from '../../models/currency.model';
+import { SharedDataService } from '../../shared/services/shared-data/shared-data.service';
 
 @Component({
   selector: 'app-details',

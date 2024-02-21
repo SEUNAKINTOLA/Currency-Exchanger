@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges  } from '@angular/core';
-import { ConvertedValue, Currency } from '../models/currency.model';
+import { ConvertedValue, Currency } from '../../../models/currency.model';
 import { Router } from '@angular/router';
-import { SharedDataService } from '../services/shared-data.service';
+import { SharedDataService } from '../../services/shared-data/shared-data.service';
 
 @Component({
   selector: 'app-converter-panel',

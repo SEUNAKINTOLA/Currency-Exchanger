@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
-import { CurrencyService } from '../services/currency.service';
+import { CurrencyService } from '../../shared/services/currency/currency.service';
 import { of } from 'rxjs';
-import { Currency, ConvertedValue } from '../models/currency.model';
+import { Currency, ConvertedValue } from '../../models/currency.model';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ChartDataset, ChartOptions } from 'chart.js';
-import { CurrencyService } from '../services/currency.service';
+import { CurrencyService } from '../../services/currency/currency.service';
 
 @Component({
   selector: 'app-chart',
