@@ -13,33 +13,33 @@ export class CurrencyService {
 
   constructor(private http: HttpClient) {}
 
-  getCurrencies(): Observable<any> {
+  getCurrencies(): Observable<object> {
     const url = `${this.apiUrl}/symbols?access_key=${this.apiKey}`;
     return this.fetchData(url, 'currencies');
   }
 
-  getCurrenciesRate(): Observable<any> {
+  getCurrenciesRate(): Observable<object> {
     const url = `${this.apiUrl}/latest?access_key=${this.apiKey}`;
     return this.fetchData(url, 'currenciesRate');
   }
 
-  convertCurrency(convertFrom: string, convertTo: string): Observable<any> {
+  convertCurrency(convertFrom: string, convertTo: string): Observable<object> {
     const url = `${this.apiUrl}/latest?access_key=${this.apiKey}&base=${convertFrom}&symbols=${convertTo}`;
     return this.fetchData(url, 'conversion'+convertFrom+convertTo);
   }
 
-  getHistoricalData(fromCurrency: string, toCurrency: string, date: string): Observable<any> {
+  getHistoricalData(fromCurrency: string, toCurrency: string, date: string): Observable<object> {
     const url = `${this.apiUrl}/${date}?access_key=${this.apiKey}&base=EUR&symbols=${fromCurrency},${toCurrency}`;
     return this.fetchData(url, 'historicalData'+date+fromCurrency+toCurrency);
   }
 
-  private fetchData(url: string, storageKey: string): Observable<any> {
+  private fetchData(url: string, storageKey: string): Observable<object> {
     const cachedData = this.getCachedData(storageKey);
     if (cachedData) {
       return of(cachedData);
     }
 
-    return this.http.get<any>(url).pipe(
+    return this.http.get<object>(url).pipe(
       map(data => {
         this.cacheData(storageKey, data);
         return data;
@@ -51,7 +51,7 @@ export class CurrencyService {
     );
   }
 
-  private cacheData(key: string, data: any) {
+  private cacheData(key: string, data: object) {
     const storageData = {
       timestamp: new Date().getTime(),
       data: data
@@ -59,7 +59,7 @@ export class CurrencyService {
     localStorage.setItem(key, JSON.stringify(storageData));
   }
 
-  private getCachedData(key: string): any | null {
+  private getCachedData(key: string): object | null {
     const storedData = localStorage.getItem(key);
     if (storedData) {
       const storageData = JSON.parse(storedData);
@@ -69,7 +69,7 @@ export class CurrencyService {
       if (new Date().getTime() - timestamp < expirationTime) {
         return storageData.data;
       } else {
-        localStorage.removeItem(key); // Clear expired data
+        localStorage.removeItem(key);
       }
     }
 

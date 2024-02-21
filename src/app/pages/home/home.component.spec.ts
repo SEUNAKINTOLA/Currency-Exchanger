@@ -10,7 +10,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   template: ''
 })
 class MockCurrencyCardComponent {
-  @Input() currency: any;
+  @Input() currency!: ConvertedValue;
 }
 
 @Component({

@@ -44,10 +44,6 @@ export class DetailsComponent implements OnInit {
     this.convertToCurrency = selectedCurrency;
   }
 
-  onDefaultAmountChange(amount: number) {}
-
-  onConvertedResultChange(result: number) {}
-
   handleConvertedValues(values: ConvertedValue[]) {
     this.convertedValues = values;
   }

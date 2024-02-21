@@ -16,12 +16,6 @@ export class ChartComponent implements OnInit {
     responsive: true,
     maintainAspectRatio: false,
   };
-  public lineChartColors: any[] = [
-    {
-      borderColor: 'black',
-      backgroundColor: 'rgba(255,255,0,0.3)',
-    },
-  ];
   public lineChartLegend = true;
   public lineChartType = 'line';
   public lineChartPlugins = [];
@@ -44,7 +38,8 @@ export class ChartComponent implements OnInit {
 
       // Create a promise for each month to fetch historical data
       promises.push(
-        this.currencyService.getHistoricalData(this.fromCurrency, this.toCurrency, formattedendOfMonthDate).toPromise()
+        this.currencyService.getHistoricalData(this.fromCurrency, this.toCurrency, formattedendOfMonthDate)
+          .toPromise() as Promise<{ [key: string]: number; }>
       );
     }
 
