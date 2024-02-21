@@ -21,6 +21,7 @@ export const environment = {
   fixerApiBaseUrl: 'http://data.fixer.io/api',
   apiKey: 'YOUR_API_KEY_HERE', // Replace 'YOUR_API_KEY_HERE' with your actual Fixer API key
 };
+```
 
 ## Usage
 
