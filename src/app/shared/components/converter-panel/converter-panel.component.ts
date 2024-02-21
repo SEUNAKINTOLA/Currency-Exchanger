@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges  } from '@angular/core';
 import { ConvertedValue, Currency } from '../../../models/currency.model';
 import { Router } from '@angular/router';
-import { SharedDataService } from '../../services/shared-data/shared-data.service';
 
 @Component({
   selector: 'app-converter-panel',
@@ -27,10 +26,7 @@ export class ConverterPanelComponent implements OnChanges  {
 
   isAmountValid: boolean = !isNaN(this.defaultAmount) && this.defaultAmount > 0;
 
-  constructor(
-    private router: Router,
-    private sharedDataService: SharedDataService
-    ) {}
+  constructor(private router: Router) {}
 
     ngOnChanges(changes: SimpleChanges) {
       if (changes['conversionRates']) {
@@ -90,8 +86,6 @@ export class ConverterPanelComponent implements OnChanges  {
 
   viewDetails() {
     const detailsUrl = `/details/${this.convertFromCurrency}/${this.convertToCurrency}`;
-    this.sharedDataService.setCurrencies(this.currencies);
-    this.sharedDataService.setConversionRates(this.conversionRates);
     const queryParams = {
       amount: this.defaultAmount,
     };
